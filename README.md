@@ -25,3 +25,17 @@ A basic pong game using SVGs.
 **Player 2:**
 * ▲ : up
 * ▼: down
+
+
+## Technologies Applied 
+
+* html5
+* css
+*  webpack
+* javascript
+
+
+## Personal Learning Developments 
+
+* Dynamically create elements using Javascript
+* Understand and acknowledge that Webpack provides an efficient way in compiling modules
