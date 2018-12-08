@@ -6,6 +6,7 @@ this.x = x;
 this.y = y
 this.size = size;
 
+
 }
  
 
@@ -26,11 +27,3 @@ svg.appendChild(text);
 }
 
 
-// strethch goals
-
-
-
-//reset() 
-
-// ball speed increase evertime hits paddle.
-//ball.speed += 0.5

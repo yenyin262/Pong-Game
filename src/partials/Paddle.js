@@ -35,6 +35,10 @@ getScore() {
     return this.score;
 }
 
+resetScore() { 
+    this.score = 0;
+}
+
 coordinates(){
 const leftX = this.x; 
 const rightX = this.x + this.width;

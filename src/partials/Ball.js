@@ -44,26 +44,26 @@ paddleCollision(player1, player2) {
                   && (this.y <= bottom) 
                   && (this.y >= top);
         if (hit) { 
-            this.vx *= -1.1;
+            this.vx *= -1;
             this.ping.play();
-            // this.secondBall
-          // this.speed += 0.5 add in above (-1.5);
+          
         }
-        // check for player 2
+    
     } else {
-        // check for player 1
+       
         const [left, right, top, bottom] = player1.coordinates();
         const hit = (this.x - this.radius <= right) 
         && (this.y <= bottom) 
         && (this.y >= top);
         if (hit) { 
-            this.vx *= -1.1;
+            this.vx *= -1;
             this.ping.play();
-            // this.secondBall;
-          //this.speed += 0.5
+           
         }
     }
 }
+
+
 
 checkScore(player1, player2) {
     const hitLeft = (this.x - this.radius <= 0);
@@ -82,14 +82,6 @@ checkScore(player1, player2) {
 
 
 
-// createBall () { 
-
-
-// }
-
-
-
-
 render(svg, player1, player2) {
     let circle = document.createElementNS(SVG_NS, 'circle');  //NS - namespace = creating element not a HTML element.
     circle.setAttributeNS(null, 'r', this.radius);
@@ -104,9 +96,6 @@ render(svg, player1, player2) {
     this.x = this.x + this.vx; // this.x += this.vx - angle of the ball 
     this.y = this.y + this.vy; // this.y += this.vy
     
-    //  if (this.secondBall) { 
 
-    //     this.secondBall.render(svg, player1, player2)
-    //  }
  }
 }

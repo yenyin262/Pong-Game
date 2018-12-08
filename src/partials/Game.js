@@ -45,12 +45,11 @@ export default class Game {
 		);
 
 		this.ball = new Ball(this.ballRadius, this.width, this.height);
-		
-		// this.secondBall = new Ball(this.ballRadius, this.width, this.height);
 
 		this.score1 = new Score(this.width /2 - 50 ,30, this.scoreFontSize);
 		this.score2 = new Score(this.width /2 + 25 ,30, this.scoreFontSize);
 
+		this.secondBall = new Ball(this.ballRadius, this.width, this.height);
 
 		 document.addEventListener('keydown', event => { 
 		    switch(event.key) {
@@ -80,15 +79,34 @@ export default class Game {
 		this.player2.render(svg);
 
 		this.ball.render(svg, this.player1, this.player2);
-		// this.secondBall.render(svg, this.player1, this.player2);
+		if (this.player1.getScore()  >= 2 || this.player2.getScore() >= 2 ) {
+			this.secondBall.render(svg, this.player1, this.player2)
+			this.vx *= -1.2;
+		}
+		
 
+
+	 if (this.player1.getScore() === 8) { 
+		this.score1.render(svg, "Player 1 Wins!"); // if replace ';' to  '&&' says player 1 wins and continues game
+		this.score.render(svg); //p1 win and stops game -does not reset score
+		// resetScore(svg, this.player1, this.player2); stops the game enttirely and says player1 wins
+		
+
+		
+	 }		
+	 else if (this.player2.getScore() === 8) {
+			this.score2.render(svg, "Player 2 Wins!"); // if replace ';' to  '&&' says player 2 wins and continues
+			this.score.render(svg); // p2 win and stops game = does not reset score
+		    // resetScore(svg, this.player1, this.player2);// 
+			
+	} else {
 		this.score1.render(svg, this.player1.getScore()); 
 		this.score2.render(svg, this.player2.getScore());
 
-
-		if (this.player1.getScore > this.player2.getScore) { 
-			return "      "
-		}
 	}
-
+ }
 }
+
+	
+
+
