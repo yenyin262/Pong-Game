@@ -6,4 +6,6 @@ export const KEYS = {
     p2up:'ArrowUp',
     p2down:'ArrowDown', 
     spaceBar: ' ',
+    reset: 'r'
+    
 }
