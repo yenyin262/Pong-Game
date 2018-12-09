@@ -27,6 +27,12 @@ A basic pong game using SVGs.
 * ▼: down
 
 
+**To Restart Game:**
+* r : restart
+
+**To Pause Game or  Continue Playing After Win:**
+*  press 'spacebar' 
+
 ## Technologies Applied 
 
 * html5
