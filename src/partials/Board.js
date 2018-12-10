@@ -8,9 +8,8 @@ export default class Board {
         this.height = height;
     }
 
-    render(svg) { //apending svg to render method to Board
+    render(svg) { 
 
-        // create your element set properties
         let rect = document.createElementNS(SVG_NS, 'rect')
         rect.setAttributeNS(null, 'fill', '#353535');
         rect.setAttributeNS(null, 'width', this.width);
@@ -26,8 +25,6 @@ export default class Board {
         line.setAttributeNS(null, 'stroke-dasharray', '20, 15');
         line.setAttributeNS(null, 'stroke-width', '4');
 
-
-        //create line element
         svg.appendChild(rect);
         svg.appendChild(line);
 

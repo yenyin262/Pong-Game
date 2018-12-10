@@ -11,8 +11,10 @@ export default class Game {
 		this.width = width;
 		this.height = height;
 		this.pause = false;
+
+		this.gameOn = new Audio('public/sounds/01 Another Day Of Sun (From _La La Land_ Soundtrack).mp3');
 		this.gameOver = false;
-		
+
 
 		this.paddleWidth = 8;
 		this.paddleHeight = 56;
@@ -23,7 +25,7 @@ export default class Game {
 
 		this.board = new Board(this.width, this.height);
 
-		this.player1 = new Paddle(  //constructor call / tell game where we creating it
+		this.player1 = new Paddle(  
 			this.height,
 			this.paddleWidth,
 			this.paddleHeight,
@@ -34,7 +36,7 @@ export default class Game {
 
 		);
 
-		this.player2 = new Paddle(  //constructor call / tell game where we creating it
+		this.player2 = new Paddle(  
 			this.height,
 			this.paddleWidth,
 			this.paddleHeight,
@@ -47,15 +49,11 @@ export default class Game {
 		);
 
 		this.ball = new Ball(this.ballRadius, this.width, this.height, 'white');
+		this.secondBall = new Ball(10, this.width, this.height, 'red');
+		this.thirdBall = new Ball(12, this.width, this.height, 'blue');
 
 		this.score1 = new Score(this.width / 2 - 50, 30, this.scoreFontSize);
 		this.score2 = new Score(this.width / 2 + 25, 30, this.scoreFontSize);
-
-		this.secondBall = new Ball(10, this.width, this.height, 'red');
-
-		this.thirdBall = new Ball(12, this.width, this.height, 'blue');
-
-		this.gameOn = new Audio('public/sounds/01 Another Day Of Sun (From _La La Land_ Soundtrack).mp3');
 
 		document.addEventListener('keydown', event => {
 			switch (event.key) {
@@ -68,12 +66,11 @@ export default class Game {
 					this.gameOn.pause()
 					this.pause = !this.pause;
 					break;
+
 				case KEYS.reset:
 					this.player1.resetScore();
 					this.player2.resetScore();
 					this.gameOver = false;
-					 
-					
 					break;
 
 			}
@@ -85,7 +82,7 @@ export default class Game {
 		if (this.pause) {
 			return;
 		}
-		this.gameOn.play()
+		this.gameOn.play();
 
 		this.gameElement.innerHTML = '';
 		let svg = document.createElementNS(SVG_NS, 'svg');
@@ -108,30 +105,25 @@ export default class Game {
 
 		if (this.player1.getScore() >= 5 || this.player2.getScore() >= 5) {
 			this.thirdBall.render(svg, this.player1, this.player2);
-			this.vx *= -1.7;
+			this.vx *= -1.5;
 		}
 
-		if (this.player1.getScore() === 10) {
-			this.score1.render(svg, "Player 1 Wins!");
+		if (this.player1.getScore() === 14) {
+			this.score1.render(svg, 'Player 1 Wins!');
 			this.pause = true;
 			this.gameOver = true;
-			
-			this.gameOn.pause()
+			this.gameOn.pause();
 		}
-		else if (this.player2.getScore() === 10) {
-			this.score2.render(svg, "Player 2 Wins!");
+		else if (this.player2.getScore() === 14) {
+			this.score2.render(svg, 'Player 2 Wins!');
 			this.pause = true;
 			this.gameOver = true;
-			
-			this.gameOn.pause()
-		} else {
+			this.gameOn.pause();
+		} 
+		else {
 			this.score1.render(svg, this.player1.getScore());
 			this.score2.render(svg, this.player2.getScore());
 		}
-
-
-
-
 	}
 
 }

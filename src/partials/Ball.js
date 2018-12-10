@@ -9,18 +9,17 @@ export default class Ball {
         this.direction = 1;
         this.color = color;
        
-        this.reset(); //call reset method - when ball is created
+        this.reset(); 
     }
 
     reset() {
         this.x = this.boardWidth / 2;
         this.y = this.boardHeight / 2;
-        this.vy = 0;  // to prevent boring top bottom movement
+        this.vy = 0;  
         while (this.vy === 0) {
-            this.vy = Math.floor(Math.random() * 10 - 5); // get values between 0 - 1 on math.random / range is between -5 to 5 //floor function 
-            //takes numerical only not decimal. first defined
+            this.vy = Math.floor(Math.random() * 10 - 5); 
         }
-        this.vx = this.direction * (6 - Math.abs(this.vy)); //y boound between -5 & 5  // x bound by 1-5
+        this.vx = this.direction * (6 - Math.abs(this.vy)); 
     }
 
     wallCollision() {
@@ -79,19 +78,19 @@ export default class Ball {
 
 
     render(svg, player1, player2) {
-        let circle = document.createElementNS(SVG_NS, 'circle');  //NS - namespace = creating element not a HTML element.
+        let circle = document.createElementNS(SVG_NS, 'circle');  
         circle.setAttributeNS(null, 'r', this.radius);
         circle.setAttributeNS(null, 'cx', this.x);
         circle.setAttributeNS(null, 'cy', this.y);
-        circle.setAttributeNS(null, 'fill', this.color); //first property it takes is name space - dont need to reference when setting property
+        circle.setAttributeNS(null, 'fill', this.color); 
         svg.appendChild(circle);
         this.wallCollision();
         this.checkScore(player1, player2);
         this.paddleCollision(player1, player2);
        
  
-        this.x = this.x + this.vx; // this.x += this.vx - angle of the ball 
-        this.y = this.y + this.vy; // this.y += this.vy
+        this.x = this.x + this.vx; 
+        this.y = this.y + this.vy; 
 
 
     }
