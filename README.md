@@ -30,18 +30,19 @@ A basic pong game using SVGs.
 **To Restart Game:**
 * r : restart
 
-**To Pause Game or  Continue Playing After Win:**
+**To pause or restart game after win:**
 *  press 'spacebar' 
 
 ## Technologies Applied 
 
 * html5
-* css
-*  webpack
-* javascript
+* CSS
+* Webpack
+* Javascript
 
 
 ## Personal Learning Developments 
 
 * Dynamically create elements using Javascript
 * Understand and acknowledge that Webpack provides an efficient way in compiling modules
+
