@@ -1,5 +1,8 @@
 export const SVG_NS = 'http://www.w3.org/2000/svg';
 
+export const PADDLEWIDTH = 8;
+export const BOARDGAP = 10;
+
 export const KEYS = { 
     p1up: 'a',
     p1down: 'z', 
