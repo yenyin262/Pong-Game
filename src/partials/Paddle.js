@@ -27,6 +27,12 @@ export default class Paddle {
 
     }
 
+    resetPaddleHeight() {
+      this.height = 56;
+    }
+    increasePaddleHeight() { 
+        this.height = 90;
+    }
     increaseScore() {
         this.score += 1;
     }

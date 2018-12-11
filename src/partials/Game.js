@@ -61,7 +61,10 @@ export default class Game {
 					if (this.gameOver) {
 						this.player1.resetScore();
 						this.player2.resetScore();
+						this.player1.resetPaddleHeight();
+						this.player2.resetPaddleHeight();
 						this.gameOver = false;
+						
 					}
 					this.gameOn.pause()
 					this.pause = !this.pause;
@@ -70,6 +73,8 @@ export default class Game {
 				case KEYS.reset:
 					this.player1.resetScore();
 					this.player2.resetScore();
+					this.player1.resetPaddleHeight();
+					this.player2.resetPaddleHeight();
 					this.gameOver = false;
 					break;
 
@@ -100,12 +105,15 @@ export default class Game {
 		if (this.player1.getScore() >= 2 || this.player2.getScore() >= 2) {
 			this.secondBall.render(svg, this.player1, this.player2);
 			this.vx *= -1.3;
+			
 		}
 
 
 		if (this.player1.getScore() >= 5 || this.player2.getScore() >= 5) {
 			this.thirdBall.render(svg, this.player1, this.player2);
 			this.vx *= -1.5;
+			this.player1.increasePaddleHeight();
+			this.player2.increasePaddleHeight();
 		}
 
 		if (this.player1.getScore() === 14) {
