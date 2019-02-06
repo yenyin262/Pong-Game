@@ -1,4 +1,4 @@
-import { SVG_NS, KEYS, PADDLEWIDTH, BOARDGAP } from '../settings';
+import { SVG_NS, KEYS, PADDLEWIDTH, BOARDGAP, PADDLE_HEIGHT, BALL_RADIUS, SCORE_FONT_SIZE } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
@@ -14,13 +14,6 @@ export default class Game {
 
 		this.gameOn = new Audio('public/sounds/01 Another Day Of Sun (From _La La Land_ Soundtrack).mp3');
 		this.gameOver = false;
-
-
-		PADDLEWIDTH;
-		this.paddleHeight = 56;
-		BOARDGAP;
-		this.ballRadius = 8;
-		this.scoreFontSize = 30;
 		this.gameElement = document.getElementById(this.element);
 
 		this.board = new Board(this.width, this.height);
@@ -28,9 +21,9 @@ export default class Game {
 		this.player1 = new Paddle(  
 			this.height,
 			PADDLEWIDTH,
-			this.paddleHeight,
+			PADDLE_HEIGHT,
 			BOARDGAP,
-			((this.height - this.paddleHeight) / 2),
+			((this.height - PADDLE_HEIGHT) / 2),
 			KEYS.p1up,
 			KEYS.p1down,
 
@@ -39,21 +32,21 @@ export default class Game {
 		this.player2 = new Paddle(  
 			this.height,
 			PADDLEWIDTH,
-			this.paddleHeight,
+			PADDLE_HEIGHT,
 			(this.width - BOARDGAP - PADDLEWIDTH),
-			((this.height - this.paddleHeight) / 2),
+			((this.height - PADDLE_HEIGHT) / 2),
 
 			KEYS.p2up,
 			KEYS.p2down,
 
 		);
 
-		this.ball = new Ball(this.ballRadius, this.width, this.height, 'white');
+		this.ball = new Ball(BALL_RADIUS, this.width, this.height, 'white');
 		this.secondBall = new Ball(10, this.width, this.height, 'red');
 		this.thirdBall = new Ball(12, this.width, this.height, 'blue');
 
-		this.score1 = new Score(this.width / 2 - 50, 30, this.scoreFontSize);
-		this.score2 = new Score(this.width / 2 + 25, 30, this.scoreFontSize);
+		this.score1 = new Score(this.width / 2 - 50, 30, SCORE_FONT_SIZE);
+		this.score2 = new Score(this.width / 2 + 25, 30, SCORE_FONT_SIZE);
 
 		document.addEventListener('keydown', event => {
 			switch (event.key) {
@@ -102,27 +95,32 @@ export default class Game {
 		this.player2.render(svg);
 
 		this.ball.render(svg, this.player1, this.player2);
-		if (this.player1.getScore() >= 2 || this.player2.getScore() >= 2) {
-			this.secondBall.render(svg, this.player1, this.player2);
-			this.vx *= -1.3;
-			
-		}
-
 
 		if (this.player1.getScore() >= 5 || this.player2.getScore() >= 5) {
+			this.secondBall.render(svg, this.player1, this.player2);
+			this.vx *= -1.3;
+		}
+		
+		if (this.player1.getScore() >= 10 || this.player2.getScore() >= 10) {
 			this.thirdBall.render(svg, this.player1, this.player2);
 			this.vx *= -1.5;
-			this.player1.increasePaddleHeight();
-			this.player2.increasePaddleHeight();
 		}
 
-		if (this.player1.getScore() === 14) {
+		if (this.player1.getScore() >= 8 ) {
+			this.player1.decreasePaddleHeight();
+		}
+
+		 if (this.player2.getScore() >= 8) {
+			this.player2.decreasePaddleHeight();
+		}
+
+		if (this.player1.getScore() === 15) {
 			this.score1.render(svg, 'Player 1 Wins!');
 			this.pause = true;
 			this.gameOver = true;
 			this.gameOn.pause();
 		}
-		else if (this.player2.getScore() === 14) {
+		else if (this.player2.getScore() === 15) {
 			this.score2.render(svg, 'Player 2 Wins!');
 			this.pause = true;
 			this.gameOver = true;

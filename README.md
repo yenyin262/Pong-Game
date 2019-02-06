@@ -33,6 +33,16 @@ A basic pong game using SVGs.
 **To pause or restart game after win:**
 *  press 'spacebar' 
 
+
+## Pong Game's new twist:- 
+
+1. The first player to reach a score of 15 wins! 
+2. The first player that reaches a score of 8 will have their paddle decreased as a bonus! 
+3. A second and third ball will be added during the game as a challenge :) 
+   When ? Play to find out! 
+
+
+
 ## Technologies Applied 
 
 * html5

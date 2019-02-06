@@ -1,10 +1,11 @@
-import { SVG_NS } from '../settings';
+import { SVG_NS, DECREASED_PADDLE_HEIGHT } from '../settings';
 
 export default class Paddle {
 
     constructor(boardHeight, width, height, x, y, up, down) {
         this.boardHeight = boardHeight;
         this.width = width;
+        this.defaultHeight = height;
         this.height = height;
         this.x = x;
         this.y = y;
@@ -28,10 +29,10 @@ export default class Paddle {
     }
 
     resetPaddleHeight() {
-      this.height = 56;
+      this.height = this.defaultHeight;
     }
-    increasePaddleHeight() { 
-        this.height = 90;
+    decreasePaddleHeight() { 
+        this.height = DECREASED_PADDLE_HEIGHT;
     }
     increaseScore() {
         this.score += 1;
