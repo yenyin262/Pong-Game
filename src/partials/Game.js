@@ -110,7 +110,7 @@ export default class Game {
 			this.player1.decreasePaddleHeight();
 		}
 
-		 if (this.player2.getScore() >= 8) {
+		if (this.player2.getScore() >= 8) {
 			this.player2.decreasePaddleHeight();
 		}
 
