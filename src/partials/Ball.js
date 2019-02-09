@@ -35,6 +35,7 @@ export default class Ball {
 
     paddleCollision(player1, player2) {
         if (this.vx > 0) {
+            // eslint-disable-next-line no-unused-vars
             const [left, right, top, bottom] = player2.coordinates();
             const hit = (this.x + this.radius >= left)
                 && (this.y <= bottom)
@@ -45,7 +46,7 @@ export default class Ball {
             }
 
         } else {
-
+            // eslint-disable-next-line no-unused-vars
             const [left, right, top, bottom] = player1.coordinates();
             const hit = (this.x - this.radius <= right)
                 && (this.y <= bottom)
